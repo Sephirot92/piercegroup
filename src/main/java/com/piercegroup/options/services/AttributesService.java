@@ -14,13 +14,32 @@ public class AttributesService {
     @Autowired
     private AttributeRepository attributesRepository;
 
-    public List<Attribute> getAllAttributes (){
+    public List<Attribute> getAllAttributes() {
         return attributesRepository.findAll();
     }
 
-    public Optional<Attribute> findByCode (String code){
-        return attributesRepository.findById(code);
+    public Optional<Attribute> findById(Long id) {
+        return attributesRepository.findById(id);
     }
 
+    public Attribute createAttribute(Attribute attribute) {
+        Optional<Attribute> attributeOptional = attributesRepository.findById(attribute.getId());
+        if (!attributeOptional.isPresent())
+            return attributesRepository.save(attribute);
 
+        return attribute;
+    }
+
+    public Attribute updateAttribute(Attribute attribute) {
+        Optional<Attribute> attributeOptional = attributesRepository.findById(attribute.getId());
+        if (!attributeOptional.isPresent())
+            return attributesRepository.save(attribute);
+
+        return attribute;
+    }
+
+    public void deleteAttribute(Long id) {
+        Attribute attributeToDelete = attributesRepository.findById(id).orElseThrow();
+        attributesRepository.delete(attributeToDelete);
+    }
 }

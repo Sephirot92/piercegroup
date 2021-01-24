@@ -1,59 +1,85 @@
-package com.piercegroup.options.dtos;
+package com.piercegroup.options.entities;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-public class OptionsDto {
+/**
+ * Option class
+ *
+ * @author Łukasz Czapraga
+ * @version 0.0.1
+ */
+@Entity(name = "OPTIONS")
+public class Option {
 
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
+    private long id;
 
+    @Column(name = "CODE")
     private String code;
 
+    @Column(name = "ES")
     private String labelEs_ES;
 
+    @Column(name = "NL")
     private String labelNl_NL;
 
+    @Column(name = "BE")
     private String labelNl_BE;
 
+    @Column(name = "NO")
     private String labelNb_NO;
 
+    @Column(name = "IT")
     private String labelIt_IT;
 
+    @Column(name = "FR")
     private String labelFr_FR;
 
+    @Column(name = "FI")
     private String labelFi_FI;
 
+    @Column(name = "US")
     private String labelUs_US;
 
+    @Column(name = "SE")
     private String labelSv_SE;
 
+    @Column(name = "IE")
     private String labelEn_IE;
 
+    @Column(name = "GB")
     private String labelEn_GB;
 
+    @Column(name = "DE")
     private String labelDe_DE;
 
+    @Column(name = "CH")
     private String labelDe_CH;
 
+    @Column(name = "AT")
     private String labelDe_AT;
 
+    @Column(name = "DK")
     private String labelDa_DK;
 
+    @Column(name = "CZ")
     private String labelCs_CZ;
 
+    @Column(name = "PL")
     private String labelPl_PL;
 
+    @Column(name = "attribute")
     private String attribute;
 
-    public OptionsDto() {
+    public Option() {
     }
 
-    public OptionsDto(int id, String code, String labelEs_ES, String labelNl_NL, String labelNl_BE, String labelNb_NO,
-                      String labelIt_IT, String labelFr_FR, String labelFi_FI, String labelUs_US, String labelSv_SE,
-                      String labelEn_IE, String labelEn_GB, String labelDe_DE, String labelDe_CH, String labelDe_AT,
-                      String labelDa_DK, String labelCs_CZ, String labelPl_PL, String attribute) {
+    public Option(long id, String code, String labelEs_ES, String labelNl_NL, String labelNl_BE, String labelNb_NO,
+                  String labelIt_IT, String labelFr_FR, String labelFi_FI, String labelUs_US, String labelSv_SE,
+                  String labelEn_IE, String labelEn_GB, String labelDe_DE, String labelDe_CH, String labelDe_AT,
+                  String labelDa_DK, String labelCs_CZ, String labelPl_PL, String attribute) {
         this.id = id;
         this.code = code;
         this.labelEs_ES = labelEs_ES;
@@ -76,12 +102,8 @@ public class OptionsDto {
         this.attribute = attribute;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
-    }
-
-    public String getCode() {
-        return code;
     }
 
     public String getLabelEs_ES() {
@@ -158,10 +180,6 @@ public class OptionsDto {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
     }
 
     public void setLabelEs_ES(String labelEs_ES) {
