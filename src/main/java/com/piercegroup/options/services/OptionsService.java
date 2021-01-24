@@ -18,8 +18,8 @@ public class OptionsService {
         return optionRepository.findAll();
     }
 
-    public Optional<Option> findById(Long id) {
-        return optionRepository.findById(id);
+    public Option findById(Long id) {
+        return optionRepository.findById(id).orElseThrow();
     }
 
     public Option createOption(Option option) {

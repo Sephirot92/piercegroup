@@ -18,8 +18,8 @@ public class AttributesService {
         return attributesRepository.findAll();
     }
 
-    public Optional<Attribute> findById(Long id) {
-        return attributesRepository.findById(id);
+    public Attribute findById(Long id) {
+        return attributesRepository.findById(id).orElseThrow();
     }
 
     public Attribute createAttribute(Attribute attribute) {

@@ -70,8 +70,8 @@ public class Option {
     @Column(name = "PL")
     private String labelPl_PL;
 
-    @Column(name = "attribute")
-    private String attribute;
+    @Column(name = "ATTRIBUTECODE")
+    private String attributeCode;
 
     public Option() {
     }
@@ -79,7 +79,7 @@ public class Option {
     public Option(long id, String code, String labelEs_ES, String labelNl_NL, String labelNl_BE, String labelNb_NO,
                   String labelIt_IT, String labelFr_FR, String labelFi_FI, String labelUs_US, String labelSv_SE,
                   String labelEn_IE, String labelEn_GB, String labelDe_DE, String labelDe_CH, String labelDe_AT,
-                  String labelDa_DK, String labelCs_CZ, String labelPl_PL, String attribute) {
+                  String labelDa_DK, String labelCs_CZ, String labelPl_PL, String attributeCode, Attribute attribute) {
         this.id = id;
         this.code = code;
         this.labelEs_ES = labelEs_ES;
@@ -99,11 +99,15 @@ public class Option {
         this.labelDa_DK = labelDa_DK;
         this.labelCs_CZ = labelCs_CZ;
         this.labelPl_PL = labelPl_PL;
-        this.attribute = attribute;
+        this.attributeCode = attributeCode;
     }
 
     public long getId() {
         return id;
+    }
+
+    public String getCode() {
+        return code;
     }
 
     public String getLabelEs_ES() {
@@ -174,12 +178,16 @@ public class Option {
         return labelPl_PL;
     }
 
-    public String getAttribute() {
-        return attribute;
+    public String getAttributeCode() {
+        return attributeCode;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public void setLabelEs_ES(String labelEs_ES) {
@@ -250,7 +258,7 @@ public class Option {
         this.labelPl_PL = labelPl_PL;
     }
 
-    public void setAttribute(String attribute) {
-        this.attribute = attribute;
+    public void setAttributeCode(String attributeCode) {
+        this.attributeCode = attributeCode;
     }
 }
