@@ -1,16 +1,18 @@
 package com.piercegroup.options.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Set;
 
 /**
  * Attribute entity class.
  *
- * @version 0.0.1
  * @author Łukasz Czapraga
+ * @version 0.0.1
  */
 
-@Entity(name = "ATTRIBUTE")
-public class Attribute {
+@Entity(name = "ATTRIBUTES")
+public class Attribute implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -74,13 +76,21 @@ public class Attribute {
     @Column(name = "COLOR")
     private String color;
 
+    @OneToMany
+    @JoinTable(
+            name = "ATTRIBUTE_OPTIONS",
+            joinColumns = {@JoinColumn(name = "CODE", referencedColumnName = "CODE")},
+            inverseJoinColumns = {@JoinColumn(name = "ATT_CODE", referencedColumnName = "ATTRIBUTECODE")}
+    )
+    private Set<Option> optionSet;
+
     public Attribute() {
     }
 
     public Attribute(long id, String code, String supplierPackSize, String packsize, String helmetSize, String shoeSize,
                      String size, String sizeCap, String sizeChild, String sizeChildCl, String sizeGlovesChild,
                      String sizeGlovesMan, String sizeGlovesWoman, String sizeMan, String sizeManCl, String sizeUnisex,
-                     String sizeWoman, String sizeWomanCl, String additionalColors, String color) {
+                     String sizeWoman, String sizeWomanCl, String additionalColors, String color, Set<Option> optionSet) {
         this.id = id;
         this.code = code;
         this.supplierPackSize = supplierPackSize;
@@ -101,6 +111,7 @@ public class Attribute {
         this.sizeWomanCl = sizeWomanCl;
         this.additionalColors = additionalColors;
         this.color = color;
+        this.optionSet = optionSet;
     }
 
     public long getId() {
@@ -183,6 +194,10 @@ public class Attribute {
         return color;
     }
 
+    public Set<Option> getOptionSet() {
+        return optionSet;
+    }
+
     public void setId(long id) {
         this.id = id;
     }
@@ -261,5 +276,9 @@ public class Attribute {
 
     public void setColor(String color) {
         this.color = color;
+    }
+
+    public void setOptionSet(Set<Option> optionSet) {
+        this.optionSet = optionSet;
     }
 }

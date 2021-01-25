@@ -1,5 +1,7 @@
 package com.piercegroup.options.entities;
 
+import org.hibernate.annotations.NaturalId;
+
 import javax.persistence.*;
 
 /**
@@ -16,6 +18,7 @@ public class Option {
     @Column(name = "ID")
     private long id;
 
+    @NaturalId
     @Column(name = "CODE")
     private String code;
 
@@ -73,6 +76,9 @@ public class Option {
     @Column(name = "ATTRIBUTECODE")
     private String attributeCode;
 
+    @ManyToOne
+    private Attribute attribute;
+
     public Option() {
     }
 
@@ -100,6 +106,7 @@ public class Option {
         this.labelCs_CZ = labelCs_CZ;
         this.labelPl_PL = labelPl_PL;
         this.attributeCode = attributeCode;
+        this.attribute = attribute;
     }
 
     public long getId() {
@@ -182,6 +189,10 @@ public class Option {
         return attributeCode;
     }
 
+    public Attribute getAttribute() {
+        return attribute;
+    }
+
     public void setId(long id) {
         this.id = id;
     }
@@ -260,5 +271,9 @@ public class Option {
 
     public void setAttributeCode(String attributeCode) {
         this.attributeCode = attributeCode;
+    }
+
+    public void setAttribute(Attribute attribute) {
+        this.attribute = attribute;
     }
 }
